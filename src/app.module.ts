@@ -5,6 +5,7 @@ import { SecurityModule } from './security/security.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { envConfig } from './config/env.config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ManageModule } from './manage/manage.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       }),
     }),
     SecurityModule,
+    ManageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
