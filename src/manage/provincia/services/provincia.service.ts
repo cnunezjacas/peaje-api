@@ -4,7 +4,10 @@ import {
     Logger 
 } from '@nestjs/common';
 import { PROVINCIA_REPOSITORY } from '../interfaces/provincia-repository.interface';
+import { Provincia } from '../entities/provincia.entity';
 import { CreateProvinciaDto } from '../dtos/create-provincia.dto';
+import { UpdateProvinciaDto } from '../dtos/update-provincia.dto';
+import { GetProvinciasFilterDto } from '../dtos/get-provincias-filter.dto';
 
 @Injectable()
 export class ProvinciaService {
@@ -15,35 +18,28 @@ export class ProvinciaService {
         @Inject(PROVINCIA_REPOSITORY)
         private readonly provinciaRepository){}
 
-    async create(createProvinciaDto: CreateProvinciaDto){
+    async create(createProvinciaDto: CreateProvinciaDto): Promise<Provincia>{
         
         this.logger.log('Creando provincia desde ProvinciaService');
 
-        return await this.provinciaRepository.createProvincia(createProvinciaDto);
+        return await this.provinciaRepository.create(createProvinciaDto);
+    }
+
+    async update(id: string, updateProvinciaDto: UpdateProvinciaDto): Promise<Provincia>{
+        this.logger.log('Actualizando provincia desde ProvinciaService');
+        return await this.provinciaRepository.update(id, updateProvinciaDto);
+    }
+
+    async delete(id: string): Promise<Provincia>{
+        this.logger.log('Eliminando provincia desde ProvinciaService');
+        return await this.provinciaRepository.delete(id);
+    }
+
+    async findAll(getProvinciaFilterDto: GetProvinciasFilterDto): Promise<Provincia[]>{
+        return await this.provinciaRepository.findAll(getProvinciaFilterDto);
+    }
+
+    async findOne(id: string): Promise<Provincia>{
+        return await this.provinciaRepository.findOne(id);
     }
 }
-/*import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Provincia } from '../schemas/provincia.schema';
-import { CreateProvinciaDto } from '../dtos/create-provincia.dto';
-import { Injectable, Logger } from '@nestjs/common';
-
-@Injectable()
-export class ProvinciaService {
-    
-    private readonly logger = new Logger(ProvinciaService.name);
-
-    constructor(
-        @InjectModel(Provincia.name)
-        private readonly provinciaModel: Model<Provincia>){}
-
-    async create(dto: CreateProvinciaDto){
-        const { codigo, nombre } = dto;
-        this.logger.log('Creando provincia desde ProvinciaService');
-
-        return await this.provinciaModel.create({
-            codigo,
-            nombre
-        });
-    }
-}*/
