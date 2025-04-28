@@ -1,11 +1,7 @@
-import { Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateProvinciaDto } from "../dtos/create-provincia.dto";
 import { ProvinciaRepository } from "../interfaces/provincia-repository.interface";
-import {
-    ProvinciaDocument,
-    ProvinciaModel
-} from "../schemas/provincia.schema";
-import { Provincia } from '../entities/provincia.entity';
+import { Provincia } from "../entities/provincia.entity";
 import {
     Injectable,
     NotFoundException
@@ -19,12 +15,13 @@ export class MongoProvinciaRepository implements ProvinciaRepository {
 
     constructor(
         @InjectModel(Provincia.name)
-        private readonly provinciaModel: ProvinciaModel
+        private readonly provinciaModel: Model<Provincia>
     ) { }
 
     async create(createProvinciaDto: CreateProvinciaDto): Promise<Provincia> {
         const provincia = await new this.provinciaModel(createProvinciaDto).save();
-        return this.mapRawProvinciaToProvincia(provincia);
+        //return this.mapRawProvinciaToProvincia(provincia);
+        return provincia;
     }
 
     async update(id: string, updateProvinciaDto: UpdateProvinciaDto): Promise<Provincia> {
@@ -32,7 +29,8 @@ export class MongoProvinciaRepository implements ProvinciaRepository {
         if (!isValid) throw new NotFoundException('Id Provincia no válido');
         const provincia = await this.provinciaModel.findByIdAndUpdate(id, updateProvinciaDto, { new: true });
         if (!provincia) throw new NotFoundException('Provincia not found');
-        return this.mapRawProvinciaToProvincia(<ProvinciaDocument>(provincia));
+        //return this.mapRawProvinciaToProvincia(<Provincia>(provincia));
+        return provincia;
     }
 
     async delete(id: string): Promise<Provincia> {
@@ -40,7 +38,8 @@ export class MongoProvinciaRepository implements ProvinciaRepository {
         if (!isValid) throw new NotFoundException('Id Provincia no válido');
         const provincia = await this.provinciaModel.findByIdAndDelete(id);
         if (!provincia) throw new NotFoundException('Provincia not found');
-        return this.mapRawProvinciaToProvincia(<ProvinciaDocument>(provincia));
+        //return this.mapRawProvinciaToProvincia(<Provincia>(provincia));
+        return provincia;
     }
 
     async findAll(getProvinciaFilterDto: GetProvinciasFilterDto): Promise<Provincia[]> {
@@ -51,7 +50,7 @@ export class MongoProvinciaRepository implements ProvinciaRepository {
         if (nombre) query.where('nombre', nombre);
         const result = await query.exec();
         result.forEach(prov => {
-            provincias.push(this.mapRawProvinciaToProvincia(<ProvinciaDocument>(prov)));
+            provincias.push(prov);
         });
         return provincias;
     }
@@ -61,14 +60,15 @@ export class MongoProvinciaRepository implements ProvinciaRepository {
         if (!isValid) throw new NotFoundException('Id Provincia no válido');
         const provincia = await this.provinciaModel.findById(id);
         if (!provincia) throw new NotFoundException('Provincia not found');
-        return this.mapRawProvinciaToProvincia(<ProvinciaDocument>(provincia));
+        return provincia;
+        //return this.mapRawProvinciaToProvincia(<Provincia>(provincia));
     }
 
-    mapRawProvinciaToProvincia(rawProvincia: ProvinciaDocument): Provincia {
+   /* mapRawProvinciaToProvincia(rawProvincia: Provincia): Provincia {
         const provincia = new Provincia();
         provincia.id = rawProvincia.id;
         provincia.codigo = rawProvincia.codigo;
         provincia.nombre = rawProvincia.nombre;
         return provincia;
-    }
+    }*/
 }

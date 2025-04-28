@@ -2,10 +2,20 @@ import { Module } from '@nestjs/common';
 import { ProvinciaController } from './provincia/controllers/provincia.controller';
 import { ProvinciaService } from './provincia/services/provincia.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ProvinciaSchema } from './provincia/schemas/provincia.schema';
-import { Provincia } from './provincia/entities/provincia.entity';
+import { 
+  Provincia, 
+  ProvinciaSchema 
+} from './provincia/entities/provincia.entity';
 import { PROVINCIA_REPOSITORY } from './provincia/interfaces/provincia-repository.interface';
 import { MongoProvinciaRepository } from './provincia/repository/mongo-provincia.repository';
+import { MunicipioService } from './municipio/services/municipio.service';
+import { MunicipioController } from './municipio/controllers/municipio.controller';
+import { MUNICIPIO_REPOSITORY } from './municipio/interfaces/municipio-repository.interface';
+import { MongoMunicipioRepository } from './municipio/repository/mongo-municipio.repository';
+import { 
+  Municipio, 
+  MunicipioSchema 
+} from './municipio/entities/municipio.entity';
 
 @Module({
   imports: [
@@ -13,15 +23,27 @@ import { MongoProvinciaRepository } from './provincia/repository/mongo-provincia
       {
         name: Provincia.name,
         schema: ProvinciaSchema
+      },
+      {
+        name: Municipio.name,
+        schema: MunicipioSchema
       }
     ])
   ],
-  controllers: [ProvinciaController],
+  controllers: [
+    ProvinciaController, 
+    MunicipioController
+  ],
   providers: [
     ProvinciaService,
     {
       provide: PROVINCIA_REPOSITORY,
       useClass: MongoProvinciaRepository,
+    },
+    MunicipioService,
+    {
+      provide: MUNICIPIO_REPOSITORY,
+      useClass: MongoMunicipioRepository,
     }
   ],
 })

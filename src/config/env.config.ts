@@ -1,6 +1,6 @@
 export const envConfig = () => ({
   DB_NAME: process.env.DB_NAME || 'db_peaje',
-  MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017',
+  MONGO_URI: process.env.MONGO_URI || 'mongodb://root:rootlineaSIG@localhost:27017',
   PORT: process.env.PORT || 3000,
   JWT_SECRET: process.env.JWT_SECRET || 'GBRMHd50AulZWr0YsVAKgu20gVGjQXL6',
   JWT_REFRESH_SECRET:

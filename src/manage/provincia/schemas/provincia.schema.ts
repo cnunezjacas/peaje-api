@@ -9,9 +9,9 @@ class Provincia {
     nombre: string;
 }
 
-export const ProvinciaSchema = SchemaFactory.createForClass(Provincia);
+/*export const ProvinciaSchema = SchemaFactory.createForClass(Provincia);
 
 export type ProvinciaDocument = Provincia & Document;
 
 export type ProvinciaModel = Model<Provincia>;
-
+*/

@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { 
+    Body, 
+    Controller,
+    Delete, 
+    Get, 
+    Param, 
+    Patch, 
+    Post, 
+    Query, 
+    UsePipes, 
+    ValidationPipe 
+} from '@nestjs/common';
 import { ProvinciaService } from '../services/provincia.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateProvinciaDto } from '../dtos/create-provincia.dto';
