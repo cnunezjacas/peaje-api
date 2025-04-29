@@ -17,4 +17,6 @@ export interface MunicipioRepository {
     findAll(municipioDto: MunicipioDto): Promise<Municipio[]>;
 
     findOne(id: string): Promise<Municipio>;
+
+    deleteMany(idProvincia: string): Promise<number>;
 }

@@ -64,4 +64,11 @@ export class MongoMunicipioRepository implements MunicipioRepository {
         if (!municipio) throw new NotFoundException('Municipio not found');
         return municipio;
     }
+
+    async deleteMany(idProvincia: string): Promise<number> {
+        const isValid = Types.ObjectId.isValid(idProvincia);
+        if(!isValid) throw new NotFoundException('Id de Provincia no válido');
+        const result = await this.municipioModel.deleteMany({provincia: idProvincia});
+        return result.deletedCount;
+    }
 }

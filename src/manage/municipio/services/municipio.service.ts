@@ -38,4 +38,8 @@ export class MunicipioService {
     async findOne(id: string): Promise<Municipio>{
         return await this.municipioRepository.findOne(id);
     }
+
+    async deleteMany(idProvincia: string): Promise<number>{
+        return await this.municipioRepository.deleteMany(idProvincia);
+    }
 }
