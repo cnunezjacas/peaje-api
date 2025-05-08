@@ -6,16 +6,19 @@ import {
     Injectable,
     NotFoundException
 } from "@nestjs/common";
-import { InjectModel, MongooseModule } from "@nestjs/mongoose";
+import { InjectModel } from "@nestjs/mongoose";
 import { UpdateProvinciaDto } from "../dtos/update-provincia.dto";
 import { GetProvinciasFilterDto } from '../dtos/get-provincias-filter.dto';
+import { Municipio } from '../../municipio/entities/municipio.entity';
 
 @Injectable()
-export class MongoProvinciaRepository implements ProvinciaRepository {
+export class ProvinciaMongoRepository implements ProvinciaRepository {
 
     constructor(
         @InjectModel(Provincia.name)
-        private readonly provinciaModel: Model<Provincia>
+        private readonly provinciaModel: Model<Provincia>,
+        @InjectModel(Municipio.name)
+        private readonly municipioModel: Model<Municipio>,
     ) { }
 
     async create(createProvinciaDto: CreateProvinciaDto): Promise<Provincia> {
@@ -36,6 +39,7 @@ export class MongoProvinciaRepository implements ProvinciaRepository {
     async delete(id: string): Promise<Provincia> {
         const isValid = Types.ObjectId.isValid(id);
         if (!isValid) throw new NotFoundException('Id Provincia no válido');
+        await this.municipioModel.deleteMany({id});
         const provincia = await this.provinciaModel.findByIdAndDelete(id);
         if (!provincia) throw new NotFoundException('Provincia not found');
         //return this.mapRawProvinciaToProvincia(<Provincia>(provincia));

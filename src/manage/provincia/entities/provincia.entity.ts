@@ -3,9 +3,9 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Provincia extends Document{
-    @Prop({required: true})
+    @Prop({required: true, unique: true})
     codigo: number;
-    @Prop({ required: true})
+    @Prop({ required: true, unique: true})
     nombre: string;
 }
 

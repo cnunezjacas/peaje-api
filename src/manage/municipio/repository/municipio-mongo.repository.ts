@@ -15,7 +15,7 @@ import {
 import { InjectModel } from "@nestjs/mongoose";
 
 @Injectable()
-export class MongoMunicipioRepository implements MunicipioRepository {
+export class MunicipioMongoRepository implements MunicipioRepository {
 
     constructor(
         @InjectModel(Municipio.name)

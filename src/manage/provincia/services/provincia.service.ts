@@ -3,7 +3,7 @@ import {
     Injectable, 
     Logger 
 } from '@nestjs/common';
-import { PROVINCIA_REPOSITORY } from '../interfaces/provincia-repository.interface';
+import { PROVINCIA_REPOSITORY, ProvinciaRepository } from '../interfaces/provincia-repository.interface';
 import { Provincia } from '../entities/provincia.entity';
 import { CreateProvinciaDto } from '../dtos/create-provincia.dto';
 import { UpdateProvinciaDto } from '../dtos/update-provincia.dto';
@@ -16,7 +16,7 @@ export class ProvinciaService {
 
     constructor(
         @Inject(PROVINCIA_REPOSITORY)
-        private readonly provinciaRepository){}
+        private readonly provinciaRepository: ProvinciaRepository){}
 
     async create(createProvinciaDto: CreateProvinciaDto): Promise<Provincia>{
         
