@@ -57,9 +57,20 @@ import { EXENTO_REPOSITORY } from './exento/interfaces/exento-repository.interfa
 import { ExentoMongoRespository } from './exento/repository/exento-mongo.repository';
 import { ComprobanteService } from './comprobante/services/comprobante.service';
 import { ComprobanteController } from './comprobante/controllers/comprobante.controller';
-import { Comprobante, ComprobanteSchema } from './comprobante/entities/comprobante.entity';
+import { 
+  Comprobante, 
+  ComprobanteSchema 
+} from './comprobante/entities/comprobante.entity';
 import { COMPROBANTE_REPOSITORY } from './comprobante/interfaces/comprobante-repository.interface';
 import { ComprobanteMongoRespository } from './comprobante/repository/comprobante-mongo.repository';
+import {
+  FormasDePago,
+  FormasDePagoSchema
+} from './formas_pago/entities/formas-pago.entity';
+import { FORMAS_PAGO_REPOSITORY } from './formas_pago/interfaces/formas-pago-repository.interface';
+import { FormasDePagoMongoRespository } from './formas_pago/repository/formas-pago--mongo.repository';
+import { FormasDePagoService } from './formas_pago/services/formas-pago.service';
+import { FormasDePagoController } from './formas_pago/controllers/formas-pago.controller';
 
 @Module({
   imports: [
@@ -96,6 +107,10 @@ import { ComprobanteMongoRespository } from './comprobante/repository/comprobant
         name: Comprobante.name,
         schema: ComprobanteSchema
       },
+      {
+        name: FormasDePago.name,
+        schema: FormasDePagoSchema
+      },
     ])
   ],
   controllers: [
@@ -107,6 +122,7 @@ import { ComprobanteMongoRespository } from './comprobante/repository/comprobant
     VehiculoController,
     ExentoController,
     ComprobanteController,
+    FormasDePagoController
   ],
   providers: [
     ProvinciaService,
@@ -149,6 +165,11 @@ import { ComprobanteMongoRespository } from './comprobante/repository/comprobant
       provide: COMPROBANTE_REPOSITORY,
       useClass: ComprobanteMongoRespository
     },
+    FormasDePagoService,
+    {
+      provide: FORMAS_PAGO_REPOSITORY,
+      useClass: FormasDePagoMongoRespository
+    }
   ],
 })
 export class ManageModule { }
