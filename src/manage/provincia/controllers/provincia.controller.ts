@@ -1,14 +1,14 @@
-import { 
-    Body, 
-    Controller,
-    Delete, 
-    Get, 
-    Param, 
-    Patch, 
-    Post, 
-    Query, 
-    UsePipes, 
-    ValidationPipe 
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ProvinciaService } from '../services/provincia.service';
 import { ApiTags } from '@nestjs/swagger';
@@ -20,34 +20,34 @@ import { Provincia } from '../entities/provincia.entity';
 @ApiTags('Manage/Provincia')
 @Controller('/manage/provincia')
 export class ProvinciaController {
-    constructor(private provinciaService: ProvinciaService) { }
+  constructor(private provinciaService: ProvinciaService) {}
 
-    @Post()
-    @UsePipes(new ValidationPipe())
-    create(@Body() dto: CreateProvinciaDto): Promise<Provincia>{
-        return this.provinciaService.create(dto);
-    }
+  @Post()
+  @UsePipes(new ValidationPipe())
+  create(@Body() dto: CreateProvinciaDto): Promise<Provincia> {
+    return this.provinciaService.create(dto);
+  }
 
-    @Patch('/:id')
-    @UsePipes(new ValidationPipe())
-    update(@Param('id') id: string, @Body() body: UpdateProvinciaDto): Promise<Provincia>{
-        return this.provinciaService.update(id, body);
-    }
+  @Patch('/:id')
+  @UsePipes(new ValidationPipe())
+  update(@Param('id') id: string, @Body() body: UpdateProvinciaDto): Promise<Provincia> {
+    return this.provinciaService.update(id, body);
+  }
 
-    @Delete('/:id')
-    @UsePipes(new ValidationPipe())
-    delete(@Param('id') id: string): Promise<Provincia>{
-        return this.provinciaService.delete(id);
-    }
+  @Delete('/:id')
+  @UsePipes(new ValidationPipe())
+  delete(@Param('id') id: string): Promise<Provincia> {
+    return this.provinciaService.delete(id);
+  }
 
-    @Get()
-    @UsePipes(new ValidationPipe())
-    findAll(@Query() getProvinciasFilterDto: GetProvinciasFilterDto): Promise<Provincia[]>{
-        return this.provinciaService.findAll(getProvinciasFilterDto);
-    }
+  @Get()
+  @UsePipes(new ValidationPipe())
+  findAll(@Query() getProvinciasFilterDto: GetProvinciasFilterDto): Promise<Provincia[]> {
+    return this.provinciaService.findAll(getProvinciasFilterDto);
+  }
 
-    @Get('/:id')
-    findOne(@Param('id') id: string): Promise<Provincia>{
-        return this.provinciaService.findOne(id);
-    }
+  @Get('/:id')
+  findOne(@Param('id') id: string): Promise<Provincia> {
+    return this.provinciaService.findOne(id);
+  }
 }

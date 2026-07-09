@@ -38,10 +38,7 @@ export class UserService {
       });
     } catch (error: any) {
       console.error(error);
-      throw new HttpException(
-        'Internal server error',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw new HttpException('Internal server error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
   async update(id: string, dto: UpdateUserDto) {
@@ -56,11 +53,7 @@ export class UserService {
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    await this.userModel.findByIdAndUpdate(
-      id,
-      { isActive: false },
-      { new: true },
-    );
+    await this.userModel.findByIdAndUpdate(id, { isActive: false }, { new: true });
   }
   async changePassword(id: string, dto: ChangePasswordUserDto) {
     const { password } = dto;

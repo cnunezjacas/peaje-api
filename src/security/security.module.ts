@@ -13,7 +13,7 @@ import { UserService } from './services/user.service';
       },
     ]),
   ],
-  controllers:[UserController],
-  providers: [UserService]
+  controllers: [UserController],
+  providers: [UserService],
 })
 export class SecurityModule {}

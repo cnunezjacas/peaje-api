@@ -1,40 +1,36 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { 
-    IsNotEmpty, 
-    IsOptional, 
-    IsString 
-} from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreateBancoDto{
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    nombre: string;
+export class CreateBancoDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  nombre: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    codigo: string;
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  codigo: string;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    detalles: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  detalles: string;
 }
 
 export class BancoDto {
-    @ApiProperty()
-    @IsOptional()    
-    @IsString()
-    nombre: string;
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  nombre?: string;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    codigo: string;
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  codigo?: string;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    detalles: string;
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  detalles?: string;
 }

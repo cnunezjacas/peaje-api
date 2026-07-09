@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { envConfig } from './config/env.config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ManageModule } from './manage/manage.module';
+import { EntitiesModule } from './entities/entities.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ManageModule } from './manage/manage.module';
     }),
     SecurityModule,
     ManageModule,
+    EntitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -3,8 +3,7 @@ export const envConfig = () => ({
   MONGO_URI: process.env.MONGO_URI || 'mongodb://root:rootlineaSIG@localhost:27017',
   PORT: process.env.PORT || 3000,
   JWT_SECRET: process.env.JWT_SECRET || 'GBRMHd50AulZWr0YsVAKgu20gVGjQXL6',
-  JWT_REFRESH_SECRET:
-    process.env.JWT_REFRESH_SECRET || '55dVbLswpEBQeMrouwZXjtsZ1jCDqSEw',
+  JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || '55dVbLswpEBQeMrouwZXjtsZ1jCDqSEw',
   JWT_EXPIRATION: process.env.JWT_EXPIRATION || '1h',
   JWT_REFRESH_EXPIRATION: process.env.JWT_REFRESH_EXPIRATION || '8h',
 });

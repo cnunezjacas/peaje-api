@@ -3,10 +3,10 @@ import { Document, Model } from 'mongoose';
 
 @Schema()
 class Provincia {
-    @Prop({required: true})
-    codigo: number;
-    @Prop({ required: true})
-    nombre: string;
+  @Prop({ required: true })
+  codigo: number;
+  @Prop({ required: true })
+  nombre: string;
 }
 
 /*export const ProvinciaSchema = SchemaFactory.createForClass(Provincia);
