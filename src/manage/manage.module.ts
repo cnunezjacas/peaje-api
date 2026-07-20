@@ -19,11 +19,11 @@ import { BancoService } from './banco/services/banco.service';
 import { BancoController } from './banco/controllers/banco.controller';
 import { Banco, BancoSchema } from './banco/entities/banco.entity';
 import { BANCO_REPOSITORY } from './banco/interfaces/banco-repository.interfaces';
-import { BancoMongoRespository } from './banco/respository/banco-mongo.repository';
+import { BancoMongoRespository } from './banco/repository/banco-mongo.repository';
 import { MonedaService } from './moneda/services/moneda.service';
 import { MonedaController } from './moneda/controllers/moneda.controller';
 import { MONEDA_REPOSITORY } from './moneda/interfaces/moneda-repository.interface';
-import { MonedaMongoRespository } from './moneda/repository/moneda-mongo.repositoy';
+import { MonedaMongoRespository } from './moneda/repository/moneda-mongo.repository';
 import { Moneda, MonedaSchema } from './moneda/entities/moneda.entity';
 import { VehiculoService } from './vehiculo/services/vehiculo.service';
 import { VehiculoController } from './vehiculo/controllers/vehiculo.controller';
@@ -47,7 +47,7 @@ import { FormasDePagoService } from './formas_pago/services/formas-pago.service'
 import { FormasDePagoController } from './formas_pago/controllers/formas-pago.controller';
 import { TipoCuenta, TipoCuentaSchema } from './banco/entities/tipo-cuenta.entity';
 import { TIPO_CUENTA_REPOSITORY } from './banco/interfaces/tipo-cuenta-repository.interfaces';
-import { TipoCuentaMongoRespository } from './banco/respository/tipo-cuenta-mongo.repository';
+import { TipoCuentaMongoRespository } from './banco/repository/tipo-cuenta-mongo.repository';
 import { TipoCuentaController } from './banco/controllers/tipo-cuenta.controller';
 import { TipoCuentaService } from './banco/services/tipo-cuenta.service';
 
