@@ -23,14 +23,14 @@ export class EstacionesMongoRespository implements EstacionesRepository {
       .findByIdAndUpdate(id, estacionesDto, { new: true })
       .exec();
     if (!estacion) throw new NotFoundException('Estación not found');
-    return <Estaciones>estacion;
+    return estacion;
   }
 
   async delete(id: string): Promise<Estaciones> {
     const isValid = Types.ObjectId.isValid(id);
-    if (!isValid) throw new NotFoundException('Id Estaciones no válido');
+    if (!isValid) throw new NotFoundException('Id Estacion no válido');
     const estacion = await this.estacionesModel.findByIdAndDelete(id);
-    if (!estacion) throw new NotFoundException('Estaciones not found');
+    if (!estacion) throw new NotFoundException('Estacion not found');
     return estacion;
   }
 
