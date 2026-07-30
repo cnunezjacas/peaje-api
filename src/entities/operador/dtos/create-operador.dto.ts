@@ -25,7 +25,7 @@ export class CreateOperadorDto {
   @ApiProperty({
     description: 'Rol del Operador',
     required: true,
-    enum: RolOperador.COBRADOR,
+    enum: RolOperador,
     example: 'Cobrador',
   })
   @IsNotEmpty({ message: 'El rol es obligatorio.' })
@@ -36,6 +36,7 @@ export class CreateOperadorDto {
     description: 'Estado del Operador',
     required: true,
     example: 'Activo',
+    enum: EstadoOperador,
   })
   @IsNotEmpty({ message: 'El estado del Operador es obligatorio.' })
   @IsEnum(EstadoOperador, { message: 'El estado del Cobrador debe ser, Activo o Inactivo.' })
