@@ -5,7 +5,7 @@ import { Model, Types } from 'mongoose';
 import { Operador } from '../entities/operador.entity';
 import { CreateOperadorDto } from '../dtos/create-operador.dto';
 import { UpdateOperadorDto } from '../dtos/update-operador.dto';
-import { OperadorRepository } from '../interfaces/operador.interface';
+import { OperadorRepository } from '../interfaces/operador-repository.interface';
 
 @Injectable()
 export class OperadorMongoRepository implements OperadorRepository {

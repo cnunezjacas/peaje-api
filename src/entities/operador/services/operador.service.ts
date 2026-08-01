@@ -3,7 +3,7 @@ import { Injectable, Inject, Logger } from '@nestjs/common';
 import { Operador } from '../entities/operador.entity';
 import { CreateOperadorDto } from '../dtos/create-operador.dto';
 import { UpdateOperadorDto } from '../dtos/update-operador.dto';
-import { OperadorRepository, OPERADOR_REPOSITORY } from '../interfaces/operador.interface';
+import { OperadorRepository, OPERADOR_REPOSITORY } from '../interfaces/operador-repository.interface';
 
 @Injectable()
 export class OperadorService {

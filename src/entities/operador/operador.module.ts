@@ -9,7 +9,7 @@ import { OperadorService } from './services/operador.service';
 import { OperadorController } from './controllers/operador.controller';
 
 // 3. Imports de la Interface y el Repository
-import { OperadorRepository, OPERADOR_REPOSITORY } from './interfaces/operador.interface';
+import { OPERADOR_REPOSITORY } from './interfaces/operador-repository.interface';
 import { OperadorMongoRepository } from './repository/operador-mongo.repository';
 
 @Module({
