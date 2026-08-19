@@ -10,7 +10,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CuentaService } from '../services/cuenta.service';
+import { CuentaService } from '../../estaciones/services/cuenta.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateCuentaDto, CuentaDto } from '../dtos/cuenta.dto';
 import { Cuenta } from '../entities/cuenta.entity';

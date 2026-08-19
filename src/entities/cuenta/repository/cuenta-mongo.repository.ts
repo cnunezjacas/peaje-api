@@ -1,9 +1,9 @@
 import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateCuentaDto, CuentaDto } from '../dtos/cuenta.dto';
-import { CuentaRepository } from '../interfaces/cuenta-repository.interfaces';
-import { Cuenta } from '../entities/cuenta.entity';
+import { CreateCuentaDto, CuentaDto } from '../../cuenta/dtos/cuenta.dto';
+import { CuentaRepository } from '../../cuenta/interfaces/cuenta-repository.interfaces';
+import { Cuenta } from '../../cuenta/entities/cuenta.entity';
 
 @Injectable()
 export class CuentaMongoRespository implements CuentaRepository {

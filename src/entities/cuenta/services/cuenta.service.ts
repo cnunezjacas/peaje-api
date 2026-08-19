@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CUENTA_REPOSITORY, CuentaRepository } from '../interfaces/cuenta-repository.interfaces';
-import { Cuenta } from '../entities/cuenta.entity';
-import { CreateCuentaDto, CuentaDto } from '../dtos/cuenta.dto';
+import { CUENTA_REPOSITORY, CuentaRepository } from '../../cuenta/interfaces/cuenta-repository.interfaces';
+import { Cuenta } from '../../cuenta/entities/cuenta.entity';
+import { CreateCuentaDto, CuentaDto } from '../../cuenta/dtos/cuenta.dto';
 
 @Injectable()
 export class CuentaService {

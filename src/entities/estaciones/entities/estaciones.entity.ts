@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import * as uniqueValidator from 'mongoose-unique-validator';
-import { Cuenta } from './cuenta.entity';
+import { Cuenta } from '../../cuenta/entities/cuenta.entity';
 import { Provincia } from 'src/manage/provincia/entities/provincia.entity';
 import { Municipio } from 'src/manage/municipio/entities/municipio.entity';
 
