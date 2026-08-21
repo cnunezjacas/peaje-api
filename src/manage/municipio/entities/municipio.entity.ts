@@ -1,10 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import * as uniqueValidator from 'mongoose-unique-validator';
 import { Provincia } from '../../provincia/entities/provincia.entity';
 
 @Schema()
 export class Municipio extends Document {
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   codigo: number;
   @Prop({ required: true })
   nombre: string;
@@ -12,4 +13,7 @@ export class Municipio extends Document {
   provincia: Provincia | Types.ObjectId;
 }
 
-export const MunicipioSchema = SchemaFactory.createForClass(Municipio);
+const MunicipioSchema = SchemaFactory.createForClass(Municipio);
+MunicipioSchema.plugin(uniqueValidator, { message: '{PATH} ya está en uso.' });
+
+export { MunicipioSchema };

@@ -12,7 +12,8 @@ import {
 } from '@nestjs/common';
 import { MunicipioService } from '../services/municipio.service';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateMunicipioDto, MunicipioDto } from '../dtos/municipio.dto';
+import { CreateMunicipioDto } from '../dtos/create-municipio.dto';
+import { UpdateMunicipioDto } from '../dtos/update-municipio.dto';
 import { Municipio } from '../entities/municipio.entity';
 
 @ApiTags('Manage/Municipio')
@@ -28,7 +29,7 @@ export class MunicipioController {
 
   @Patch('/:id')
   @UsePipes(new ValidationPipe())
-  update(@Param('id') id: string, @Body() body: MunicipioDto): Promise<Municipio> {
+  update(@Param('id') id: string, @Body() body: UpdateMunicipioDto): Promise<Municipio> {
     return this.municipioService.update(id, body);
   }
 
@@ -40,8 +41,8 @@ export class MunicipioController {
 
   @Get()
   @UsePipes(new ValidationPipe())
-  findAll(@Query() municipioDto: MunicipioDto): Promise<Municipio[]> {
-    return this.municipioService.findAll(municipioDto);
+  findAll(): Promise<Municipio[]> {
+    return this.municipioService.findAll();
   }
 
   @Get('/:id')
@@ -49,8 +50,8 @@ export class MunicipioController {
     return this.municipioService.findOne(id);
   }
 
-  @Delete('/provincia/:id')
+/*   @Delete('/provincia/:id')
   deleteMany(@Param('id') id: string): Promise<number> {
     return this.municipioService.deleteMany(id);
-  }
+  } */
 }
