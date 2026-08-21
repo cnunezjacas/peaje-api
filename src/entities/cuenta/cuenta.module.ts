@@ -10,7 +10,7 @@ import { CuentaController } from './controllers/cuenta.controller';
 
 // 3. Imports de la Interface y el Repository
 import { CUENTA_REPOSITORY } from './interfaces/cuenta-repository.interfaces';
-import { CuentaMongoRespository } from './repository/cuenta-mongo.repository';
+import { CuentaMongoRepository } from './repository/cuenta-mongo.repository';
 
 @Module({
   // A. Registramos el modelo en Mongoose (solo para este módulo)
@@ -31,7 +31,7 @@ import { CuentaMongoRespository } from './repository/cuenta-mongo.repository';
     CuentaService,
     {
       provide: CUENTA_REPOSITORY,
-      useClass: CuentaMongoRespository,
+      useClass: CuentaMongoRepository,
     },
   ],
 

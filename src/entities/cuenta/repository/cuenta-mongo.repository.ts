@@ -7,7 +7,7 @@ import { CuentaRepository } from '../../cuenta/interfaces/cuenta-repository.inte
 import { Cuenta } from '../../cuenta/entities/cuenta.entity';
 
 @Injectable()
-export class CuentaMongoRespository implements CuentaRepository {
+export class CuentaMongoRepository implements CuentaRepository {
   constructor(
     @InjectModel(Cuenta.name)
     private readonly cuentaModel: Model<Cuenta>,
@@ -20,9 +20,11 @@ export class CuentaMongoRespository implements CuentaRepository {
   async update(id: string, updateCuentaDto: UpdateCuentaDto): Promise<Cuenta> {
     const isValid = Types.ObjectId.isValid(id);
     if (!isValid) throw new NotFoundException('Id Tipo de Cuenta no válido');
-    const cuenta = await this.cuentaModel.findByIdAndUpdate(id, updateCuentaDto, { new: true }).exec();
-    if (!cuenta) throw new NotFoundException('Cuenta not found');
-    return cuenta;
+    const cuentaActualizada = await this.cuentaModel
+      .findByIdAndUpdate(id, updateCuentaDto, { new: true })
+      .exec();
+    if (!cuentaActualizada) throw new NotFoundException('Cuenta not found');
+    return cuentaActualizada;
   }
 
   async delete(id: string): Promise<Cuenta> {
