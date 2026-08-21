@@ -1,7 +1,8 @@
 import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateCuentaDto, CuentaDto } from '../../cuenta/dtos/cuenta.dto';
+import { CreateCuentaDto } from '../../cuenta/dtos/create-cuenta.dto';
+import { UpdateCuentaDto } from '../dtos/update-cuenta.dto';
 import { CuentaRepository } from '../../cuenta/interfaces/cuenta-repository.interfaces';
 import { Cuenta } from '../../cuenta/entities/cuenta.entity';
 
@@ -16,12 +17,12 @@ export class CuentaMongoRespository implements CuentaRepository {
     return await new this.cuentaModel(createCuentaDto).save();
   }
 
-  async update(id: string, cuentaDto: CuentaDto): Promise<Cuenta> {
+  async update(id: string, updateCuentaDto: UpdateCuentaDto): Promise<Cuenta> {
     const isValid = Types.ObjectId.isValid(id);
     if (!isValid) throw new NotFoundException('Id Tipo de Cuenta no válido');
-    const cuenta = await this.cuentaModel.findByIdAndUpdate(id, cuentaDto, { new: true }).exec();
+    const cuenta = await this.cuentaModel.findByIdAndUpdate(id, updateCuentaDto, { new: true }).exec();
     if (!cuenta) throw new NotFoundException('Cuenta not found');
-    return <Cuenta>cuenta;
+    return cuenta;
   }
 
   async delete(id: string): Promise<Cuenta> {
@@ -32,16 +33,8 @@ export class CuentaMongoRespository implements CuentaRepository {
     return cuenta;
   }
 
-  async findAll(cuentaDto: CuentaDto): Promise<Cuenta[]> {
-    const { titular } = cuentaDto;
-    let cuentas: Cuenta[] = new Array<Cuenta>();
-    let query = this.cuentaModel.find();
-    if (titular) query.where('titular', titular);
-    const result = await query.exec();
-    result.forEach((cuenta) => {
-      cuentas.push(cuenta);
-    });
-    return cuentas;
+  async findAll(): Promise<Cuenta[]> {
+    return await this.cuentaModel.find().populate('banco tipo').exec();
   }
 
   async findOne(id: string): Promise<Cuenta> {

@@ -6,13 +6,13 @@ import {
   Param,
   Patch,
   Post,
-  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CuentaService } from '../../estaciones/services/cuenta.service';
+import { CuentaService } from '../services/cuenta.service';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateCuentaDto, CuentaDto } from '../dtos/cuenta.dto';
+import { CreateCuentaDto } from '../dtos/create-cuenta.dto';
+import { UpdateCuentaDto } from '../dtos/update-cuenta.dto';
 import { Cuenta } from '../entities/cuenta.entity';
 
 @ApiTags('Entities/Cuenta')
@@ -28,7 +28,7 @@ export class CuentaController {
 
   @Patch('/:id')
   @UsePipes(new ValidationPipe())
-  update(@Param('id') id: string, @Body() body: CuentaDto): Promise<Cuenta> {
+  update(@Param('id') id: string, @Body() body: UpdateCuentaDto): Promise<Cuenta> {
     return this.cuentaService.update(id, body);
   }
 
@@ -40,8 +40,8 @@ export class CuentaController {
 
   @Get()
   @UsePipes(new ValidationPipe())
-  findAll(@Query() cuentaDto: CuentaDto): Promise<Cuenta[]> {
-    return this.cuentaService.findAll(cuentaDto);
+  findAll(): Promise<Cuenta[]> {
+    return this.cuentaService.findAll();
   }
 
   @Get('/:id')
