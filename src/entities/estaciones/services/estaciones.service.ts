@@ -25,8 +25,8 @@ export class EstacionesService {
     return await this.estacionesRepository.delete(id);
   }
 
-  async findAll(estacionesDto: EstacionesDto): Promise<Estaciones[]> {
-    return await this.estacionesRepository.findAll(estacionesDto);
+  async findAll(): Promise<Estaciones[]> {
+    return await this.estacionesRepository.findAll();
   }
 
   async findOne(id: string): Promise<Estaciones> {

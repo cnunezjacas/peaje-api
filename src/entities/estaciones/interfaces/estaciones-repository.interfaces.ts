@@ -10,7 +10,7 @@ export interface EstacionesRepository {
 
   delete(id: string): Promise<Estaciones>;
 
-  findAll(estacionesDto: EstacionesDto): Promise<Estaciones[]>;
+  findAll(): Promise<Estaciones[]>;
 
   findOne(id: string): Promise<Estaciones>;
 }

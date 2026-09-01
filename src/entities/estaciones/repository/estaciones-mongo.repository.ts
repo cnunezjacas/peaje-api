@@ -34,17 +34,11 @@ export class EstacionesMongoRespository implements EstacionesRepository {
     return estacion;
   }
 
-  async findAll(estacionesDto: EstacionesDto): Promise<Estaciones[]> {
-    const { codigo, nombre } = estacionesDto;
-    let estaciones: Estaciones[] = new Array<Estaciones>();
-    let query = this.estacionesModel.find();
-    if (codigo) query.where('codigo', codigo);
-    if (nombre) query.where('nombre', nombre);
-    const result = await query.exec();
-    result.forEach((estacion) => {
-      estaciones.push(estacion);
-    });
-    return estaciones;
+  async findAll(): Promise<Estaciones[]> {
+    return await this.estacionesModel
+      .find()
+      .populate('provincia municipio cuentaCup cuentaCuc')
+      .exec();
   }
 
   async findOne(id: string): Promise<Estaciones> {

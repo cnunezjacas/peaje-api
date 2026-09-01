@@ -40,8 +40,8 @@ export class EstacionesController {
 
   @Get()
   @UsePipes(new ValidationPipe())
-  findAll(@Query() estacionesDto: EstacionesDto): Promise<Estaciones[]> {
-    return this.estacionesService.findAll(estacionesDto);
+  findAll(): Promise<Estaciones[]> {
+    return this.estacionesService.findAll();
   }
 
   @Get('/:id')
